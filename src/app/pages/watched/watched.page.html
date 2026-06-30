@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Watched Movies</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="isLoading" class="ion-text-center ion-padding">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="!isLoading && watchedMovies.length === 0"
+       class="ion-text-center ion-padding">
+    <p>No watched movies yet. Start watching!</p>
+  </div>
+
+  <ion-list *ngIf="!isLoading && watchedMovies.length > 0">
+    <ion-item *ngFor="let movie of watchedMovies">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="movie.poster"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.year }} • {{ movie.genre }}</p>
+        <ion-badge color="primary">
+          Watched {{ movie.timesWatched }}x
+        </ion-badge>
+      </ion-label>
+      <ion-button slot="end" color="primary"
+                  (click)="incrementWatched(movie)">
+        +1
+      </ion-button>
+      <ion-button slot="end" color="warning"
+                  (click)="resetWatched(movie)">
+        Reset
+      </ion-button>
+      <ion-button slot="end" color="danger"
+                  (click)="removeMovie(movie)">
+        Remove
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

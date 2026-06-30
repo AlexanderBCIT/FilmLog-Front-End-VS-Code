@@ -1,0 +1,28 @@
+.chart-container {
+  background: #16213e;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  max-height: 300px;
+}
+
+.mat-table {
+  width: 100%;
+  background: #16213e;
+  color: #fff;
+}
+
+th.mat-header-cell {
+  color: #e94560;
+  font-weight: 700;
+}
+
+td.mat-cell {
+  color: #fff;
+}
+
+h2 {
+  color: #e94560;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}

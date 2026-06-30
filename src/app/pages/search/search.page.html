@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Search Movies</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding search-content">
+
+  <div class="search-bar-container">
+    <ion-searchbar
+      [(ngModel)]="searchQuery"
+      placeholder="Search by title..."
+      (keyup.enter)="searchMovie()">
+    </ion-searchbar>
+
+    <ion-button expand="block" (click)="searchMovie()">
+      Search
+    </ion-button>
+  </div>
+
+  <div *ngIf="searchResults.length > 0 && !selectedMovie">
+    <p>{{ searchResults.length }} results</p>
+    <div class="results-grid">
+      <div *ngFor="let movie of searchResults" class="movie-tile">
+        <img [src]="movie.poster !== 'N/A' ?
+             movie.poster : 'assets/no-poster.png'" />
+        <ion-button size="small"
+                    fill="solid"
+                    (click)="selectMovie(movie)">
+          View Movie
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedMovie" class="movie-card">
+    <ion-button fill="clear" (click)="selectedMovie = null">
+      ← Back to results
+    </ion-button>
+    <ion-card>
+      <ion-img [src]="selectedMovie.poster"
+               *ngIf="selectedMovie.poster !== 'N/A'">
+      </ion-img>
+      <ion-card-header>
+        <ion-card-title>{{ selectedMovie.title }}</ion-card-title>
+        <ion-card-subtitle>
+          {{ selectedMovie.year }} • {{ selectedMovie.genre }}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Director:</strong> {{ selectedMovie.director }}</p>
+        <p><strong>Actors:</strong> {{ selectedMovie.actors }}</p>
+        <p><strong>Plot:</strong> {{ selectedMovie.plot }}</p>
+        <p><strong>Rating:</strong> {{ selectedMovie.imdbRating }}</p>
+
+        <ion-button expand="block" color="primary"
+                    [disabled]="movieAdded"
+                    (click)="addToWatchlist()">
+          {{ movieAdded ? 'Added to Watchlist' : 'Add to Watchlist' }}
+        </ion-button>
+
+        <ion-button expand="block" color="success"
+                    [disabled]="movieWatched"
+                    (click)="markAsWatched()">
+          {{ movieWatched ? 'Already Watched' : 'Mark as Watched' }}
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

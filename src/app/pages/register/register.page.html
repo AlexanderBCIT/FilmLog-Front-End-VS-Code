@@ -1,0 +1,50 @@
+<ion-content class="ion-padding register-content">
+
+  <div class="register-container">
+
+    <div class="register-header">
+      <h1>FilmLog</h1>
+      <p>Create your account</p>
+    </div>
+
+    <ion-item class="register-input">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input
+        name="email"
+        type="email"
+        [(ngModel)]="userEmail"
+        placeholder="your@email.com">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="register-input">
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input
+        name="password"
+        type="password"
+        [(ngModel)]="userPassword"
+        placeholder="••••••••">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="register-input">
+      <ion-label position="stacked">Confirm Password</ion-label>
+      <ion-input
+        name="confirmPassword"
+        type="password"
+        [(ngModel)]="confirmPassword"
+        placeholder="••••••••">
+      </ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="register-btn" (click)="registerUser()">
+      Create Account
+    </ion-button>
+<!--I added inline span CSS because for whatever reason, the underline style was not applying in my scss file-->
+    <p class="login-link" (click)="goToLogin()">
+      Already have an account? <span style="text-decoration: underline;">Log in</span>
+    </p>
+
+  </div>
+
+</ion-content>
